@@ -1,6 +1,7 @@
 resource "aws_instance" "control_plane" {
   ami                    = data.aws_ami.ubuntu_lts.id
   instance_type          = "m6a.large"
+  key_name               = "k8s-course"
   subnet_id              = var.subnet_ids[0]
   vpc_security_group_ids = [aws_security_group.ec2.id]
 
@@ -16,6 +17,7 @@ resource "aws_instance" "worker" {
 
   ami                    = data.aws_ami.ubuntu_lts.id
   instance_type          = "t3.medium"
+  key_name               = "k8s-course"
   subnet_id              = var.subnet_ids[(count.index + 1) % length(var.subnet_ids)]
   vpc_security_group_ids = [aws_security_group.ec2.id]
 
