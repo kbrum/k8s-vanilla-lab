@@ -22,3 +22,8 @@ output "instance_public_ips" {
   description = "IPs publicos das instancias"
   value       = module.compute.instance_public_ips
 }
+
+output "instance_eip_allocation_ids" {
+  description = "Allocation IDs dos Elastic IPs"
+  value       = module.compute.instance_eip_allocation_ids
+}

@@ -11,7 +11,15 @@ output "worker_instance_ids" {
 output "instance_public_ips" {
   description = "IPs publicos das instancias"
   value = {
-    control_plane = aws_instance.control_plane.public_ip
-    workers       = aws_instance.worker[*].public_ip
+    control_plane = aws_eip.control_plane.public_ip
+    workers       = aws_eip.worker[*].public_ip
+  }
+}
+
+output "instance_eip_allocation_ids" {
+  description = "Allocation IDs dos Elastic IPs"
+  value = {
+    control_plane = aws_eip.control_plane.id
+    workers       = aws_eip.worker[*].id
   }
 }
