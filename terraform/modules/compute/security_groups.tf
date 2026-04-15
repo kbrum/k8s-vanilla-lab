@@ -39,7 +39,7 @@ resource "aws_security_group" "ec2" {
     description = "Ping"
     from_port   = 0
     to_port     = 0
-    protocol    = "icmp"
+    protocol    = "all icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
