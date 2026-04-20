@@ -36,10 +36,18 @@ resource "aws_security_group" "ec2" {
   }
 
   ingress {
-    description = "Ping"
+    description = "Cluster internal traffic"
     from_port   = 0
     to_port     = 0
-    protocol    = "all icmp"
+    protocol    = "-1"
+    self        = true
+  }
+
+  ingress {
+    description = "Ping"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
