@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: myapp
 spec:
+  replicas: 10
   selector:
     matchLabels:
       app: myapp
@@ -14,6 +15,7 @@ spec:
       containers:
         - name: myapp
           image: nginx:latest
+          command: ["sleep", "3600"]
           resources:
             limits:
               memory: "128Mi"
