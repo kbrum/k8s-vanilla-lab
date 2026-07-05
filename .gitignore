@@ -40,3 +40,7 @@ terraform.rc
 opencode.json
 modules/ecs/envs
 *.env
+.venv
+__pycache__
+kube-config.yaml
+k8s-examples/kubeadm-config.yml
