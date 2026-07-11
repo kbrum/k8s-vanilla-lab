@@ -9,6 +9,11 @@ variable "tags" {
   default     = {}
 }
 
+variable "ami_id" {
+  description = "AMI fixa usada pelas instancias EC2"
+  type        = string
+}
+
 variable "vpc_id" {
   description = "ID da VPC"
   type        = string

@@ -1,5 +1,5 @@
 resource "aws_instance" "control_plane" {
-  ami                    = data.aws_ami.ubuntu_lts.id
+  ami                    = var.ami_id
   instance_type          = "m6a.large"
   key_name               = "k8s-course"
   subnet_id              = var.subnet_ids[0]
@@ -15,7 +15,7 @@ resource "aws_instance" "control_plane" {
 resource "aws_instance" "worker" {
   count = 2
 
-  ami                    = data.aws_ami.ubuntu_lts.id
+  ami                    = var.ami_id
   instance_type          = "t3.medium"
   key_name               = "k8s-course"
   subnet_id              = var.subnet_ids[(count.index + 1) % length(var.subnet_ids)]

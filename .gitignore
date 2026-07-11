@@ -44,3 +44,10 @@ modules/ecs/envs
 __pycache__
 kube-config.yaml
 k8s-examples/kubeadm-config.yml
+
+# Helm packaged charts
+*.tgz
+
+# Local Helm override values
+values.local.yaml
+*-values.local.yaml

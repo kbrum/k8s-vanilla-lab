@@ -14,4 +14,5 @@ module "compute" {
   tags         = var.tags
   vpc_id       = module.network.vpc_id
   subnet_ids   = module.network.public_subnet_ids
+  ami_id       = var.ami_id
 }

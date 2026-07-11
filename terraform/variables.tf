@@ -8,6 +8,11 @@ variable "project_name" {
   type        = string
 }
 
+variable "ami_id" {
+  description = "AMI fixa usada pelas instancias EC2"
+  type        = string
+}
+
 variable "tags" {
   description = "Tags padrao para todos os recursos"
   type        = map(string)

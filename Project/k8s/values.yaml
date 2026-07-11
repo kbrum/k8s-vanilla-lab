@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/kbrum/lab
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+gateway:
+  enabled: true
+  className: traefik
+  name: lab-gateway
+  hostname: lab.local
+  port: 80
+
+httpRoute:
+  enabled: true
+  name: lab-route
+  path: /

@@ -1,0 +1,23 @@
+# Git
+.git/
+.gitignore
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+
+# Local environment files
+.env
+.env.*
+*.local.yaml
+*-values.local.yaml
+
+# Helm package output
+*.tgz
+
+# Kubernetes local config
+kube-config.yaml
+kubeconfig.yaml
+*.kubeconfig
