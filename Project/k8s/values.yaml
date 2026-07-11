@@ -23,13 +23,32 @@ gateway:
   className: traefik
   name: lab-gateway
   hostname: "*.lab.local"
-  port: 80
+  port: 8000
   allowedRoutes:
     namespaces:
-      from: Same
+      from: All
 
-httpRoute:
+httpRoutes:
   enabled: true
-  name: api-route
-  hostname: api.lab.local
-  path: /
+  routes:
+    - name: api-route
+      namespace: default
+      hostname: api.lab.local
+      path: /
+      parent:
+        name: lab-gateway
+        namespace: default
+      backend:
+        name: lab
+        port: 80
+
+    - name: argo-ui-route
+      namespace: argocd
+      hostname: argo.lab.local
+      path: /
+      parent:
+        name: lab-gateway
+        namespace: default
+      backend:
+        name: argocd-server
+        port: 80

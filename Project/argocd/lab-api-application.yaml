@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lab-api
+  namespace: argocd
+spec:
+  project: lab-api
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/kbrum/vanilla-k8s-setup.git
+    targetRevision: HEAD
+    path: Project/k8s
+    helm:
+      releaseName: lab
+  syncPolicy: {}

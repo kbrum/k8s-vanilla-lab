@@ -1,19 +1,24 @@
-{{- if .Values.httpRoute.enabled }}
+{{- if .Values.httpRoutes.enabled }}
+{{- range .Values.httpRoutes.routes }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: {{ .Values.httpRoute.name }}
+  name: {{ .name }}
+  namespace: {{ .namespace }}
 spec:
   parentRefs:
-    - name: {{ .Values.gateway.name }}
+    - name: {{ .parent.name }}
+      namespace: {{ .parent.namespace }}
   hostnames:
-    - {{ .Values.httpRoute.hostname | quote }}
+    - {{ .hostname | quote }}
   rules:
     - matches:
         - path:
             type: PathPrefix
-            value: {{ .Values.httpRoute.path }}
+            value: {{ .path }}
       backendRefs:
-        - name: {{ .Release.Name }}
-          port: {{ .Values.service.port }}
+        - name: {{ .backend.name }}
+          port: {{ .backend.port }}
+---
+{{- end }}
 {{- end }}

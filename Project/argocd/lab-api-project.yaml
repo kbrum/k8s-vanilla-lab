@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: lab-api
+  namespace: argocd
+spec:
+  description: Project for the lab API application
+  sourceRepos:
+    - https://github.com/kbrum/vanilla-k8s-setup.git
+  destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
