@@ -1,8 +1,8 @@
-{{- if .Values.gateway.enabled }}
+{{- if .Values.gatewayClass.enabled }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
-  name: {{ .Values.gateway.className }}
+  name: {{ .Values.gatewayClass.name }}
 spec:
-  controllerName: traefik.io/gateway-controller
+  controllerName: {{ .Values.gatewayClass.controllerName }}
 {{- end }}

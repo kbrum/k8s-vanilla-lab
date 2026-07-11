@@ -2,22 +2,34 @@ replicaCount: 2
 
 image:
   repository: ghcr.io/kbrum/lab
-  tag: "0.1.0"
+  tag: "0.1.1"
   pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: ghcr
 
 service:
   type: ClusterIP
   port: 80
   targetPort: 8000
 
+gatewayClass:
+  enabled: false
+  name: traefik
+  controllerName: traefik.io/gateway-controller
+
 gateway:
   enabled: true
   className: traefik
   name: lab-gateway
-  hostname: lab.local
+  hostname: "*.lab.local"
   port: 80
+  allowedRoutes:
+    namespaces:
+      from: Same
 
 httpRoute:
   enabled: true
-  name: lab-route
+  name: api-route
+  hostname: api.lab.local
   path: /

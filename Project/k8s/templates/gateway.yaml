@@ -9,8 +9,8 @@ spec:
     - name: web
       port: {{ .Values.gateway.port }}
       protocol: HTTP
-      hostname: {{ .Values.gateway.hostname }}
+      hostname: {{ .Values.gateway.hostname | quote }}
       allowedRoutes:
         namespaces:
-          from: Same
+          from: {{ .Values.gateway.allowedRoutes.namespaces.from }}
 {{- end }}
