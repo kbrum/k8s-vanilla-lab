@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/kbrum/vanilla-k8s-setup.git
     targetRevision: HEAD
-    path: Project/k8s
+    path: Project/api
     helm:
       releaseName: lab
   syncPolicy: {}
